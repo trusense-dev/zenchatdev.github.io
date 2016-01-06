@@ -1,0 +1,168 @@
+<?xml version="1.0" ?>
+<!DOCTYPE coverage SYSTEM "http://cobertura.sourceforge.net/xml/coverage-04.dtd">
+<coverage lines-valid="62"  lines-covered="36"  line-rate="0.5806"  branches-valid="12"  branches-covered="4"  branch-rate="0.3333"  timestamp="1452113708998" complexity="0" version="0.1">
+<sources>
+	<source>/home/docker/Jenkins/workspace/validation-stack</source>
+</sources>
+<packages>
+	<package name="src"  line-rate="0.5806"  branch-rate="0.3333" >
+	<classes>
+		<class name="UserValidation.js"  filename="src/UserValidation.js"  line-rate="0.5806"  branch-rate="0.3333" >
+		<methods>
+			<method name="(anonymous_2)"  hits="1"  signature="()V" >
+				<lines><line number="10"  hits="1" /></lines>
+			</method>
+			<method name="verifyUsername"  hits="8"  signature="()V" >
+				<lines><line number="31"  hits="8" /></lines>
+			</method>
+			<method name="isUsernameAlphanumeric"  hits="8"  signature="()V" >
+				<lines><line number="39"  hits="8" /></lines>
+			</method>
+			<method name="isUsernameLength"  hits="8"  signature="()V" >
+				<lines><line number="54"  hits="8" /></lines>
+			</method>
+			<method name="(anonymous_6)"  hits="1"  signature="()V" >
+				<lines><line number="63"  hits="1" /></lines>
+			</method>
+			<method name="verifyPassword"  hits="0"  signature="()V" >
+				<lines><line number="76"  hits="0" /></lines>
+			</method>
+			<method name="isPasswordLength"  hits="0"  signature="()V" >
+				<lines><line number="84"  hits="0" /></lines>
+			</method>
+			<method name="(anonymous_9)"  hits="0"  signature="()V" >
+				<lines><line number="93"  hits="0" /></lines>
+			</method>
+			<method name="verifyType"  hits="4"  signature="()V" >
+				<lines><line number="105"  hits="4" /></lines>
+			</method>
+			<method name="isTypeEnumUserType"  hits="4"  signature="()V" >
+				<lines><line number="113"  hits="4" /></lines>
+			</method>
+			<method name="(anonymous_12)"  hits="2"  signature="()V" >
+				<lines><line number="120"  hits="2" /></lines>
+			</method>
+			<method name="verifyStatus"  hits="0"  signature="()V" >
+				<lines><line number="132"  hits="0" /></lines>
+			</method>
+			<method name="isStatusEnumUserStatus"  hits="0"  signature="()V" >
+				<lines><line number="140"  hits="0" /></lines>
+			</method>
+			<method name="(anonymous_15)"  hits="0"  signature="()V" >
+				<lines><line number="147"  hits="0" /></lines>
+			</method>
+			<method name="verifyGender"  hits="0"  signature="()V" >
+				<lines><line number="159"  hits="0" /></lines>
+			</method>
+			<method name="isGenderEnumGender"  hits="0"  signature="()V" >
+				<lines><line number="167"  hits="0" /></lines>
+			</method>
+			<method name="(anonymous_18)"  hits="0"  signature="()V" >
+				<lines><line number="174"  hits="0" /></lines>
+			</method>
+			<method name="verifyBirthday"  hits="0"  signature="()V" >
+				<lines><line number="186"  hits="0" /></lines>
+			</method>
+			<method name="isBirthdayInRnage"  hits="0"  signature="()V" >
+				<lines><line number="194"  hits="0" /></lines>
+			</method>
+			<method name="(anonymous_21)"  hits="0"  signature="()V" >
+				<lines><line number="210"  hits="0" /></lines>
+			</method>
+			<method name="verifyAgeGroup"  hits="0"  signature="()V" >
+				<lines><line number="222"  hits="0" /></lines>
+			</method>
+			<method name="matchesEnumAgeGroup"  hits="0"  signature="()V" >
+				<lines><line number="230"  hits="0" /></lines>
+			</method>
+			<method name="(anonymous_24)"  hits="0"  signature="()V" >
+				<lines><line number="237"  hits="0" /></lines>
+			</method>
+			<method name="verifyHoroscope"  hits="0"  signature="()V" >
+				<lines><line number="249"  hits="0" /></lines>
+			</method>
+			<method name="matchesEnumHoroscope"  hits="0"  signature="()V" >
+				<lines><line number="257"  hits="0" /></lines>
+			</method>
+			<method name="(anonymous_27)"  hits="0"  signature="()V" >
+				<lines><line number="264"  hits="0" /></lines>
+			</method>
+			<method name="verifyWhatsUp"  hits="0"  signature="()V" >
+				<lines><line number="276"  hits="0" /></lines>
+			</method>
+			<method name="isWhatsUpLength"  hits="0"  signature="()V" >
+				<lines><line number="283"  hits="0" /></lines>
+			</method>
+			<method name="(anonymous_30)"  hits="0"  signature="()V" >
+				<lines><line number="292"  hits="0" /></lines>
+			</method>
+		</methods>
+		<lines>
+			<line number="10"  hits="1"  branch="false" />
+			<line number="11"  hits="1"  branch="false" />
+			<line number="12"  hits="1"  branch="false" />
+			<line number="13"  hits="1"  branch="false" />
+			<line number="14"  hits="1"  branch="false" />
+			<line number="15"  hits="1"  branch="false" />
+			<line number="16"  hits="1"  branch="false" />
+			<line number="18"  hits="1"  branch="false" />
+			<line number="19"  hits="1"  branch="false" />
+			<line number="31"  hits="1"  branch="false" />
+			<line number="39"  hits="1"  branch="false" />
+			<line number="40"  hits="8"  branch="false" />
+			<line number="54"  hits="1"  branch="false" />
+			<line number="55"  hits="8"  branch="false" />
+			<line number="63"  hits="8"  branch="false" />
+			<line number="64"  hits="1"  branch="false" />
+			<line number="76"  hits="1"  branch="false" />
+			<line number="84"  hits="1"  branch="false" />
+			<line number="85"  hits="0"  branch="false" />
+			<line number="93"  hits="0"  branch="false" />
+			<line number="94"  hits="0"  branch="false" />
+			<line number="105"  hits="1"  branch="false" />
+			<line number="113"  hits="1"  branch="false" />
+			<line number="114"  hits="4"  branch="false" />
+			<line number="120"  hits="4"  branch="false" />
+			<line number="121"  hits="2"  branch="false" />
+			<line number="132"  hits="1"  branch="false" />
+			<line number="140"  hits="1"  branch="false" />
+			<line number="141"  hits="0"  branch="false" />
+			<line number="147"  hits="0"  branch="false" />
+			<line number="148"  hits="0"  branch="false" />
+			<line number="159"  hits="1"  branch="false" />
+			<line number="167"  hits="1"  branch="false" />
+			<line number="168"  hits="0"  branch="false" />
+			<line number="174"  hits="0"  branch="false" />
+			<line number="175"  hits="0"  branch="false" />
+			<line number="186"  hits="1"  branch="false" />
+			<line number="194"  hits="1"  branch="false" />
+			<line number="195"  hits="0"  branch="false" />
+			<line number="196"  hits="0"  branch="false" />
+			<line number="197"  hits="0"  branch="false" />
+			<line number="199"  hits="0"  branch="false" />
+			<line number="200"  hits="0"  branch="false" />
+			<line number="202"  hits="0"  branch="true"  condition-coverage="0% (0/2)" />
+			<line number="210"  hits="0"  branch="false" />
+			<line number="211"  hits="0"  branch="false" />
+			<line number="222"  hits="1"  branch="false" />
+			<line number="230"  hits="1"  branch="false" />
+			<line number="231"  hits="0"  branch="false" />
+			<line number="237"  hits="0"  branch="false" />
+			<line number="238"  hits="0"  branch="false" />
+			<line number="249"  hits="1"  branch="false" />
+			<line number="257"  hits="1"  branch="false" />
+			<line number="258"  hits="0"  branch="false" />
+			<line number="264"  hits="0"  branch="false" />
+			<line number="265"  hits="0"  branch="false" />
+			<line number="276"  hits="1"  branch="false" />
+			<line number="283"  hits="1"  branch="false" />
+			<line number="284"  hits="0"  branch="false" />
+			<line number="292"  hits="0"  branch="false" />
+			<line number="293"  hits="0"  branch="false" />
+			<line number="298"  hits="1"  branch="false" />
+		</lines>
+		</class>
+	</classes>
+	</package>
+</packages>
+</coverage>
