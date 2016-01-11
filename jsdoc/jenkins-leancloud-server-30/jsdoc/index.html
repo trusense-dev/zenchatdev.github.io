@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>LeanCloud Server Index</title>
+
+	<!--[if lt IE 9]>
+	<script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+	<![endif]-->
+	<link type="text/css" rel="stylesheet" href="styles/sunlight.default.css">
+
+	<link type="text/css" rel="stylesheet" href="styles/site.cerulean.css">
+
+</head>
+
+<body>
+
+<div class="navbar navbar-default navbar-fixed-top navbar-inverse">
+<div class="container">
+	<div class="navbar-header">
+		<a class="navbar-brand" href="index.html">LeanCloud Server</a>
+		<button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#topNavigation">
+			<span class="icon-bar"></span>
+			<span class="icon-bar"></span>
+			<span class="icon-bar"></span>
+        </button>
+	</div>
+	<div class="navbar-collapse collapse" id="topNavigation">
+		<ul class="nav navbar-nav">
+			
+			<li class="dropdown">
+				<a href="global.html" class="dropdown-toggle" data-toggle="dropdown">Global<b class="caret"></b></a>
+				<ul class="dropdown-menu ">
+					<li><a href="global.html#calculateAgeGroup">calculateAgeGroup</a></li><li><a href="global.html#calculateHoroscope">calculateHoroscope</a></li><li><a href="global.html#fieldRule">fieldRule</a></li><li><a href="global.html#validateRequest">validateRequest</a></li>
+				</ul>
+			</li>
+			
+		</ul>
+		<div class="col-sm-3 col-md-3">
+            <form class="navbar-form" role="search">
+                <div class="input-group">
+                    <input type="text" class="form-control" placeholder="Search" name="q" id="search-input">
+                    <div class="input-group-btn">
+                        <button class="btn btn-default" id="search-submit"><i class="glyphicon glyphicon-search"></i></button>
+                    </div>
+                </div>
+            </form>
+        </div>
+	</div>
+
+</div>
+</div>
+
+
+<div class="container" id="toc-content">
+<div class="row">
+
+	
+	<div class="col-md-8">
+	
+		<div id="main">
+			
+
+	
+	
+
+
+
+
+
+
+
+
+
+
+
+	
+	
+
+
+
+
+
+    <section class="readme-section">
+        <article><h1>LeanCloud-server <a href="https://travis-ci.com/zenchatdev/LeancloudServer"><img src="https://travis-ci.com/zenchatdev/LeancloudServer.svg?token=CbMcp6XxrHszmirShqM2&amp;branch=master" alt="Build Status"></a></h1><p>Server code written for LeanCloud based on the so called cloud code 3.0.</p>
+<h1>Folder Structure</h1><pre class="prettyprint source"><code>&lt;&lt;Root of the project>>
+|   config  &lt;&lt;Configurations>>
+|   dist    &lt;&lt;Transpiled server code that is going to be deployed>>
+|   jsdoc   &lt;&lt;Documentation>>
+|   node_modules
+|   populator_test_env &lt;&lt;Populate database with testing data>>
+|   populator   &lt;&lt;Populate database with production data>>
+|   scripts &lt;&lt;Scripts for the project>>
+|   server
+|   |   └── cloud   &lt;&lt;Cloud code>>
+|   |   |   ├── cloudfunction   &lt;&lt;Custom cloud functions>>
+|   |   |   ├── controller  &lt;&lt;Per class callbacks>>
+|   |   |   └── utility &lt;&lt;Utilities for cloud code>>
+|   test
+|   ├── fixture &lt;&lt;Mock data shared among all tests>>
+|   ├── helper  &lt;&lt;Mocha test helpers>>
+|   ├── unit    &lt;&lt;Unit tests>>
+|   ├── integration &lt;&lt;Integration tests>>
+|   ├── generative  &lt;&lt;Generative tests>>
+|   └── system  &lt;&lt;System tests>>
+|   .arcconfig  &lt;&lt;Arcanist configuration>>  DO NOT TOUCH
+|   .arclint    &lt;&lt;Arcanist configuration>>  DO NOT TOUCH
+|   .babelrc    &lt;&lt;Babel configuration>>  DO NOT TOUCH
+|   .eslintignore   &lt;&lt;ESLint ignore>>  DO NOT TOUCH
+|   .eslintrc   &lt;&lt;ESLint rules>>  DO NOT TOUCH
+|   .gitignore  &lt;&lt;Git ignore>>  DO NOT TOUCH
+|   .nvmrc  &lt;&lt;NVM configuration>>  DO NOT TOUCH
+|   .travis.yml &lt;&lt;Travis configuration>>  DO NOT TOUCH
+|   app.js  &lt;&lt;Load and configure server components>>
+|   cloud.js    &lt;&lt;Configure cloud code>>
+|   gulpfile.babel.js   &lt;&lt;Gulp tasks>>  DO NOT TOUCH
+|   jsdoc.conf.json &lt;&lt;JSDoc configuration>>
+|   package.json    &lt;&lt;Node.js package.json>>  DO NOT TOUCH unless you know what you are doing
+|   README.md   &lt;&lt;This file>>
+└── server.js   &lt;&lt;Starting point of server>></code></pre><h1>Getting started</h1><ol>
+<li>Mare sure your node environment is 0.12.7</li>
+<li>Make sure you wrap the App ID, App Key, Master Key, and the random string inside quotation markers (&quot;&quot;)</li>
+<li>npm install -g  avoscloud-code</li>
+<li>Clone LeanCloud-server repo</li>
+<li>Run <code>npm install</code> in repo directory</li>
+</ol>
+<h2>Setup schema, indexing, CLP (class level permission) and ACL (access control list)</h2><p>All database setting files are located in <code>populator/database_settings</code>.</p>
+<h3>Data and schema</h3><ol>
+<li>Go to the web interface of your database instance on LeanCloud. Under &quot;存储&quot;, click on the gears icon on the right side of &quot;数据&quot;. On the menu, click &quot;数据导入&quot;. On the popup, under &quot;导入 class&quot; enter the name of the class and select the schema/population file. Use first part of the file name as the class name. (e.g. Business, Adress, etc.)</li>
+<li>Import all data from population.json files in <code>populator/database_settings</code>.</li>
+<li>Import all schemas from schema.json files in <code>populator/database_settings</code>.</li>
+</ol>
+<h3>Indexing</h3><ul>
+<li>Once you've finished importing schema, go back to the same &quot;存储&quot; page.</li>
+<li>Click on a class you just imported schema for. Then click on &quot;其他 =&gt; 索引&quot;.</li>
+<li>In the popup, setup the indexing exactly like the documentation for each class. You can find the documentation under <code>populator/database_settings</code> for each class. <strong>Note</strong> that some of the indexes are required and pre-filled by LeanCloud. Just make sure your version looks exactly the same as the documentation.</li>
+</ul>
+<h3>CLP</h3><ul>
+<li>TBD</li>
+</ul>
+<h3>ACL</h3><ul>
+<li>TBD</li>
+</ul>
+<h2>Setup private config</h2><ol>
+<li>Run  <code>python scripts/generate_secret.py | pbcopy</code> at repo root</li>
+<li><p>Go to <code>config/</code> directory, and create a file named <code>cookie.js</code> with the following content.</p>
+<pre class="prettyprint source lang-lang=javascript"><code>module.exports = {
+secret: &quot;paste the random key string just generated&quot;
+};</code></pre></li>
+<li><p>Create another file named <code>secret.js</code> with the following content and fill in the id and keys from LeanCloud.</p>
+<pre class="prettyprint source lang-lang=javascript"><code>module.exports = {
+development: {
+
+},
+test: {
+ APP_ID: &quot;App ID&quot;,
+ APP_KEY: &quot;App Key&quot;,
+ MASTER_KEY: &quot;Master Key&quot;
+},
+production: {
+ APP_ID: &quot;App ID&quot;,
+ APP_KEY: &quot;App Key&quot;,
+ MASTER_KEY: &quot;Master Key&quot;
+}
+};</code></pre><p><strong>Note</strong> that <code>development</code>, <code>test</code>, and <code>production</code> environments can have same or different keys.</p>
+</li>
+</ol>
+<h2>Deploy to your LeanCloud database instance for the first time</h2><p>The server code is written in es6 and transpiled locally via babel (hence the dist folder later) to support es6 features.</p>
+<ol>
+<li>At repo root directory, run <code>avoscloud add &lt;name of database instance&gt; &quot;App ID&quot; -f dist</code>. This creates and saves info in <code>dist/.avoscloud</code> directory. If you entered info wrong, manually delete the folder and mkdir again.</li>
+<li>Run <code>npm run deploy:avos</code> to deploy to test environment. <strong>Note</strong> that the command line tool will ask you for <code>masterKey</code> the first time its run. For more info on how the command line works, refer to [^avoscloud-code-command]: <a href="https://github.com/leancloud/avoscloud-code-command">avoscloud-code-command</a>.</li>
+<li>Run <code>npm run populate:test</code> to populate test environment database</li>
+<li>Run <code>npm run publish:avos</code> to deploy to production environment. <strong>Note</strong> that you cannot directly push local code to production. It has to go through test environment first.</li>
+<li>Run <code>npm run populate</code> to populate production environment database</li>
+</ol>
+<h1>Debug and testing</h1><p>Due to general restrictions of BaaS platform, debugging is not as straightforward because you don't have complete control of the environment. Some compromises have to be made during testing but there are tools to go around the problems, feel free to explore and break things.</p>
+<h2>Individually debug and test cloud hooks and cloud functions</h2><p>Cloud code 3.0 allows developers to test server code on local machine to certain extend. Before proceeding, make sure <a href="https://github.com/leancloud/avoscloud-code-command">avoscloud-code-command</a> is installed before proceeding.</p>
+<p>To launched the server locally, run <code>avoscloud</code>. Enter <code>app ID</code> and <code>master key</code> if prompted. A local debug web page can be reached at http://localhost:3001. On that page, you can individually select cloud hooks and cloud functions, and manually enter JSON data to debug. For example, to test a cloud function, you'd select the function from the dropdown menu, then enter data in JSON format in the text box. Run the command and the webpage will return result. This also works for cloud hooks.</p>
+<p><strong>PROS:</strong></p>
+<ul>
+<li>Test cloud hooks and cloud functions in isolation. For example, testing <code>beforeUpdate</code> will not trigger <code>afterUpdate</code>.</li>
+<li>Faster feedback. No need to deploy to LeanCloud.</li>
+</ul>
+<p><strong>CONS:</strong></p>
+<ul>
+<li>Manually craft JSON data can be tedious very soon.</li>
+<li>The local server is a mock server. Hence there's no guarantee it functions exactly the same as production environment.</li>
+</ul>
+<p>Tests can be written against cloud hooks and functions individually on the local mock server. Conceptually the tests behave similarly to the http://localhost:3001. You'd craft JSON request in code and send it to local mock server. Take a look at the code in <code>test/ingegration</code>. <a href="https://github.com/visionmedia/superagent">superagent</a> is used to handle raw JSON network request.</p>
+<ul>
+<li>To run integration test: <code>gulp test:int</code>.</li>
+<li>To run integration test on file change: <code>gulp test:w</code>.</li>
+</ul>
+<h2>System level debug and test</h2><p>Now the above method is only good for testing hooks and functions in isolation. However, it does not guarantee that they'd work correctly together in production. For example, a request to update a User record will always trigger <code>beforeUpdate</code> and <code>afterUpdate</code>, and if code in <code>beforeUpdate</code> also saves data in another table, it will trigger another set of hooks. In addition, the table schema also comes into effect.</p>
+<p>There's a similar, above mentioned, debug page for system level debug. Click on &quot;帮助&quot; on the top menu bar. In the dropdown menu click on &quot;在线API测试工具&quot;. This is very similar to the local debug page. <strong>NOTE</strong> you have publish server code to production environment in order to use this tool - <code>npm run deploy:avos</code>, then publish to production, <code>npm run publish:avos</code>.</p>
+<p>In system tests we utilize <code>avoscloud-sdk</code> to test against the entire system. In essence we are basically simulating how clients would interact with the server. Take a look at the code in <code>test/system</code> for examples.</p>
+<p><strong>PROS:</strong></p>
+<ul>
+<li>High level of confidence in correctness - basically running tests against production environment.</li>
+</ul>
+<p><strong>CONS:</strong></p>
+<ul>
+<li>Have to deploy before running tests and do it every time there's changes in server code.</li>
+<li>Takes about 1 minute to deploy.</li>
+<li>To use the online debug page, have to publish code.</li>
+<li>Tests might take longer to run depending on network conditions.</li>
+<li>Harder to write tests as a lot of factors, such as database schema, ACL, CLP, etc.</li>
+</ul>
+<p>The system tests environment has been configured to hit test environment only, so you don't have to publish to production environment each time.</p>
+<ul>
+<li>To deploy: <code>npm run deploy:avos</code>.</li>
+<li>To run system test: <code>gulp test:sys</code>.</li>
+<li>To run system test on file change: <code>gulp test:w</code>.</li>
+</ul>
+<p>The above two methods compliment each other. Debugging and testing cloud hooks and functions individually allows developers to iterate faster, and it ensures correctness on a unit level. However, individually working components do not guarantee that they work correctly together. That is why a system level test is also important. The downside however is that system test is usually slow to run.</p></article>
+    </section>
+
+
+
+
+
+
+
+		</div>
+	</div>
+
+	<div class="clearfix"></div>
+
+	
+		<div class="col-md-3">
+			<div id="toc" class="col-md-3 hidden-xs hidden-sm hidden-md"></div>
+		</div>
+	
+
+</div>
+</div>
+
+<div class="modal fade" id="searchResults">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">Search results</h4>
+      </div>
+      <div class="modal-body"></div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div>
+
+<footer>
+
+
+	<span class="copyright">
+	Lai Copyright © .
+	</span>
+
+<span class="jsdoc-message">
+	Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.0</a>
+	
+		on 2016-01-11T05:43:26-08:00
+	
+	using the <a href="https://github.com/docstrap/docstrap">DocStrap template</a>.
+</span>
+</footer>
+
+<script src="scripts/docstrap.lib.js"></script>
+<script src="scripts/toc.js"></script>
+<script type="text/javascript" src="scripts/fulltext-search-ui.js"></script>
+
+<script>
+$( function () {
+	$( "[id*='$']" ).each( function () {
+		var $this = $( this );
+
+		$this.attr( "id", $this.attr( "id" ).replace( "$", "__" ) );
+	} );
+
+	$( ".tutorial-section pre, .readme-section pre" ).each( function () {
+		var $this = $( this );
+
+		var example = $this.find( "code" );
+		exampleText = example.html();
+		var lang = /{@lang (.*?)}/.exec( exampleText );
+		if ( lang && lang[1] ) {
+			exampleText = exampleText.replace( lang[0], "" );
+			example.html( exampleText );
+			lang = lang[1];
+		} else {
+			var langClassMatch = example.parent()[0].className.match(/lang\-(\S+)/);
+			lang = langClassMatch ? langClassMatch[1] : "javascript";
+		}
+
+		if ( lang ) {
+
+			$this
+			.addClass( "sunlight-highlight-" + lang )
+			.addClass( "linenums" )
+			.html( example.html() );
+
+		}
+	} );
+
+	Sunlight.highlightAll( {
+		lineNumbers : true,
+		showMenu : true,
+		enableDoclinks : true
+	} );
+
+	$.catchAnchorLinks( {
+        navbarOffset: 10
+	} );
+	$( "#toc" ).toc( {
+		anchorName  : function ( i, heading, prefix ) {
+			var id = $( heading ).attr( "id" );
+			return id && id.replace(/\~/g, '-inner-').replace(/\./g, '-static-') || ( prefix + i );
+		},
+		selectors   : "#toc-content h1,#toc-content h2,#toc-content h3,#toc-content h4",
+		showAndHide : false,
+		smoothScrolling: true
+	} );
+
+	$( "#main span[id^='toc']" ).addClass( "toc-shim" );
+	$( '.dropdown-toggle' ).dropdown();
+
+    $( "table" ).each( function () {
+      var $this = $( this );
+      $this.addClass('table');
+    } );
+
+} );
+</script>
+
+
+
+<!--Navigation and Symbol Display-->
+
+
+<!--Google Analytics-->
+
+
+<script type="text/javascript">
+	$(document).ready(function() {
+		SearcherDisplay.init();
+	});
+</script>
+
+</body>
+</html>
